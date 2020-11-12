@@ -1,0 +1,53 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+description: snakemake configuration file reference
+
+type: object
+properties:
+  project:
+    type: string
+  input-dirs:
+    type: array
+    items:
+      type: string
+  search-patterns:
+    type: array
+    items:
+      type: string
+  file-endings:
+    type: array
+    items:
+      type: string
+  path-separator:
+    type: string
+    description: String that separates sample name and misc entries in input files.
+  ref:
+    type: object
+    properties:
+      covered-regions:
+        type: string
+      vep-cache:
+        type: string
+      reference:
+        type: string
+      genes:
+        type: string
+      gnomad-exome:
+        type: string
+      gnomad-genome:
+        type: string
+      cadd:
+        type: string
+    required:
+      - covered-regions
+      - vep-cache
+      - reference
+      - genes
+      - gnomad-exome
+      - gnomad-genome
+      - cadd
+      - cadd-indels
+required:
+  - input-dirs
+  - project
+  - ref

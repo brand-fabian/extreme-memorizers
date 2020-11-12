@@ -1,0 +1,11 @@
+name: Filter variants for impact and gnomad and cadd scores.
+description: Wrapper the python script in this directory
+input:
+  - input vcf
+  - impact, gnomad maf and cadd
+output:
+  - pandas table of variants
+notes: |
+  * Runs the python script in this folder.
+authors:
+  - Fabian Brand

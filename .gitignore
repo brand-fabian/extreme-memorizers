@@ -1,0 +1,7 @@
+.*
+!.gitignore
+external_scripts
+input
+output
+library
+log*

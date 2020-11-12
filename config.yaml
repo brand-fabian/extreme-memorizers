@@ -1,0 +1,15 @@
+project: extreme-memorizers
+input-dirs:
+  - input/
+search-patterns:
+  - '*hard-filtered.vcf.gz'
+path-separator: '.'
+ref:
+  covered-regions: library/MSigDB_refseq.bed
+  vep-cache: library/vep
+  reference: /home/brand/Projects/snakemake-pipeline/library/human_g1k_v37_decoy.fasta
+  genes: external_scripts/files/GO_REGULATION_OF_AXONOGENESIS_MSigDB_v7.1.txt
+  gnomad-exome: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/gnomad.exomes.r2.1.1.sites.vcf.bgz
+  gnomad-genome: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/gnomad.genomes.r2.1.1.sites.vcf.bgz
+  cadd: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/whole_genome_SNVs.tsv.gz
+  cadd-indels: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/InDels.tsv.gz
