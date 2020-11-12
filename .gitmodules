@@ -1,0 +1,3 @@
+[submodule "wrapper"]
+	path = wrapper
+	url = https://git.meb.uni-bonn.de/exome-analysis/snakemake-wrapper.git
