@@ -44,7 +44,14 @@ parser.add_argument('--max-gnomad-af', type=float, default=0,
                     help='Maximum gnomad allele frequency')
 parser.add_argument('--impact', nargs='+', default=[ 'HIGH', 'MODERATE' ],
                     help='Variant impact')
-
+parser.add_argument('--lof-metrics', type=str, default=None,
+                    help='Gnomad lof metrics table')
+parser.add_argument('--min-pli', type=float, default=0.9,
+                    help='Min. pli prob. for lof genes')
+parser.add_argument('--max-oe-lof', type=float, default=0.35,
+                    help='Max. observed expected ratio for lof genes')
+parser.add_argument('--min-mis-z', type=float, default=3.09,
+                    help='Min. missense mutation z score')
 parser.add_argument('--verbose', '-v', help='Set verbosity',
                     choices=log_level.keys(), default='info')
 
@@ -55,6 +62,12 @@ logger.debug("Arguments: {}".format(vars(args)))
 if not os.path.isfile(args.vcf):
     logger.error(f"Could not find vcf file {args.vcf}")
     sys.exit(1)
+
+if args.lof_metrics is not None and not os.path.isfile(args.lof_metrics):
+    logger.error(f"Could not read gnomad lof metrics file {args.lof_metrics}")
+    sys.exit(1)
+else:
+    filter_constraint = True
 
 ##
 # Class and Function definitions
@@ -273,6 +286,10 @@ class FilterVariants():
 
 logger.info("Filter variants...")
 filter_obj = FilterVariants(args.vcf)
+if filter_constraint:
+    lof = pandas.read_csv(args.lof_metrics, sep="\t").set_index('gene', drop=False)
+else:
+    lof = None
 
 
 def filter_cadd(
@@ -299,7 +316,27 @@ def filter_impact(
     anno = FilterVariants.get_annotations(record, header)
     return any('IMPACT' in a and a['IMPACT'] is not None and a['IMPACT'] in impact for a in anno)
 
+def filter_constraint(
+    record: record_type,
+    header: typing.List[str] = filter_obj.annotation_header,
+    lof_metrics: pandas.DataFrame = lof,
+    min_pli: float = args.min_pli,
+    min_mis_z: float = args.min_mis_z,
+    max_oe_lof: float = args.max_oe_lof,
+) -> bool:
+    anno = FilterVariants.get_annotations(record, header)
+    gene = anno[0]['SYMBOL']
+    if gene in lof_metrics.index:
+        return any(
+                (a['Consequence'] == 'missense_variant' and lof_metrics.loc[gene].mis_z > min_mis_z)
+                or (lof_metrics.loc[gene].pLI >= min_pli and lof_metrics.loc[gene].oe_lof_upper < max_oe_lof)
+            for a in anno)
+    else:
+        return False
+
 filter_obj = filter_obj.filter(filter_impact).filter(filter_gnomad).filter(filter_cadd)
+if filter_constraint:
+    filter_obj = filter_obj.filter(filter_constraint)
 df = filter_obj.to_pandas()
 
 logger.info(f"Filtered {filter_obj._filtered_records} records.")

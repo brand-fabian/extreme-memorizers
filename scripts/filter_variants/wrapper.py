@@ -24,5 +24,5 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), SCRIPT_NAME)
 shell("""
-    python3 {script_path} --verbose debug --output {output_table} {input_vcf} {log}
+    python3 {script_path} --verbose debug {extra} --output {output_table} {input_vcf} {log}
 """)

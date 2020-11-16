@@ -58,14 +58,6 @@ samples = {}
 separator = config.get('path-separator', '.')
 for f in files:
     sample_name = f.name.split(separator)[0]
-    #
-    # Testing: Subset samples to one
-    #
-    if sample_name != '102-08068':
-        continue
-    #
-    # End testing
-    #
     if not sample_name in samples.keys():
         samples[sample_name] = set()
     samples[sample_name].add(str(f))
@@ -101,6 +93,7 @@ assert_path(ref.get('genes', None), name='genes')
 assert_path(ref.get('gnomad-exome', None), name='gnomad-exome')
 assert_path(ref.get('gnomad-genome', None), name='gnomad-genome')
 assert_path(ref.get('cadd', None), name='cadd')
+assert_path(ref.get('lof-metrics', None), name='lof-metrics')
 
 ##
 # Input functions

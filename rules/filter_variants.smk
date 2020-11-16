@@ -4,7 +4,9 @@ rule filter_variants:
     output:
         table='output/{sample}/{sample}.variants.tsv'
     params:
-        extra=''
+        extra=' '.join([
+            '--lof-metrics', config['ref']['lof-metrics']
+        ])
     log: 'log/filter_variants/{sample}.log'
     resources:
         runtime=60,

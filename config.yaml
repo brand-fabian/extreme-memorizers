@@ -7,9 +7,10 @@ path-separator: '.'
 ref:
   covered-regions: library/MSigDB_refseq.bed
   vep-cache: library/vep
-  reference: /home/brand/Projects/snakemake-pipeline/library/human_g1k_v37_decoy.fasta
+  reference: /ceph01/projects/flow_cell/snakemake-pipeline/library/human_g1k_v37_decoy.fasta
   genes: external_scripts/files/GO_REGULATION_OF_AXONOGENESIS_MSigDB_v7.1.txt
-  gnomad-exome: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/gnomad.exomes.r2.1.1.sites.vcf.bgz
-  gnomad-genome: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/gnomad.genomes.r2.1.1.sites.vcf.bgz
-  cadd: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/whole_genome_SNVs.tsv.gz
-  cadd-indels: /home/brand/data/pb/files/gluster/gluster01/share/brand/annotation_db/InDels.tsv.gz
+  gnomad-exome: /home/brand/data/pb_home/files/gluster/gluster01/share/brand/annotation_db/gnomad.exomes.r2.1.1.sites.vcf.bgz
+  gnomad-genome: library/gnomad.genomes.r2.0.1.sites.noVEP.vcf.gz
+  cadd: /home/brand/data/pb_home/files/gluster/gluster01/share/brand/annotation_db/whole_genome_SNVs.tsv.gz
+  cadd-indels: /home/brand/data/pb_home/files/gluster/gluster01/share/brand/annotation_db/InDels.tsv.gz
+  lof-metrics: /ceph01/homedirs/brand/Projects/extreme-memorizers/external_scripts/files/gnomad.v2.1.1.lof_metrics.by_gene.txt

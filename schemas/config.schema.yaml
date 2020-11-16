@@ -38,6 +38,8 @@ properties:
         type: string
       cadd:
         type: string
+      lof-metrics:
+        type: string
     required:
       - covered-regions
       - vep-cache
@@ -47,6 +49,7 @@ properties:
       - gnomad-genome
       - cadd
       - cadd-indels
+      - lof-metrics
 required:
   - input-dirs
   - project

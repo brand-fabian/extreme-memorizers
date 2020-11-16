@@ -19,7 +19,8 @@ rule annotate:
             '--plugin', ','.join([
                 'CADD',os.path.abspath(config['ref']['cadd']),
                 os.path.abspath(config['ref']['cadd-indels'])
-            ])
+            ]),
+            '--offline'
         ]),
         vep_cache=config['ref']['vep-cache'],
     log: "logs/annotate/{sample}.log"
