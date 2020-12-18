@@ -4,10 +4,12 @@ input-dirs:
 search-patterns:
   - '*hard-filtered.vcf.gz'
 path-separator: '.'
+vep-config: 'vep_config.json'
+pedigree: /home/brand/Projects/msdns_inova/data/inova_other.fam
 ref:
   covered-regions: library/MSigDB_refseq.bed
   vep-cache: library/vep
-  reference: /ceph01/projects/flow_cell/snakemake-pipeline/library/human_g1k_v37_decoy.fasta
+  reference: /ceph01/scratch/brand/library/human_g1k_v37_decoy.fasta
   genes: external_scripts/files/GO_REGULATION_OF_AXONOGENESIS_MSigDB_v7.1.txt
   gnomad-exome: /home/brand/data/pb_home/files/gluster/gluster01/share/brand/annotation_db/gnomad.exomes.r2.1.1.sites.vcf.bgz
   gnomad-genome: library/gnomad.genomes.r2.0.1.sites.noVEP.vcf.gz

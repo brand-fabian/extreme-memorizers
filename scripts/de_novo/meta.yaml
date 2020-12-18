@@ -1,0 +1,11 @@
+name: de_novo
+description: Wrapper for de-novo filtration script.
+input:
+  - input vcf
+  - optional parammeters for de-novo filter settings
+output:
+  - pandas table of variants
+notes: |
+  * Runs the python script in this folder.
+authors:
+  - Fabian Brand

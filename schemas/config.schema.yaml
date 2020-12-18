@@ -21,6 +21,12 @@ properties:
   path-separator:
     type: string
     description: String that separates sample name and misc entries in input files.
+  vep-config:
+    type: string
+    description: Hail vep configuration json.
+  pedigree:
+    type: string
+    description: Cohort pedigree file in plink .fam format.
   ref:
     type: object
     properties:

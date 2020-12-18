@@ -7,7 +7,7 @@ rule filter_variants:
         extra=' '.join([
             '--lof-metrics', config['ref']['lof-metrics']
         ])
-    log: 'log/filter_variants/{sample}.log'
+    log: 'logs/filter_variants/{sample}.log'
     resources:
         runtime=60,
         mem_mb=8000,
